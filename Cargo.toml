@@ -1,0 +1,9 @@
+[package]
+name = "promptly"
+version = "0.1.0"
+authors = ["Taylor Thompson <jamestthompson3@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+colored = "1.8.0"
+git2 = "0.8.0"
