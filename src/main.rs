@@ -17,6 +17,11 @@ fn construct_prompt() -> String {
     });
 
     let workingdir = cwdthread.join().unwrap();
-    let (_branch, status) = vcsthread.join().unwrap();
-    return format!("[{cwd}] {status}", cwd = workingdir, status = status);
+    let (branch, status) = vcsthread.join().unwrap();
+    return format!(
+        "┌ {cwd} [{branch} {status}]\n└── >",
+        cwd = workingdir,
+        branch = branch,
+        status = status
+    );
 }
