@@ -1,4 +1,6 @@
+use colored::*;
 use std::thread;
+
 mod cwd;
 mod vcs;
 
@@ -18,10 +20,14 @@ fn construct_prompt() -> String {
 
     let workingdir = cwdthread.join().unwrap();
     let (branch, status) = vcsthread.join().unwrap();
+    let separator = "┌".bright_black();
+    let pointer = "└──>".bright_black();
     return format!(
-        "┌ {cwd} [{branch} {status}]\n└── >",
+        "{separator} {cwd} {branch} {status}\n{pointer}",
+        separator = separator,
         cwd = workingdir,
         branch = branch,
-        status = status
+        status = status,
+        pointer = pointer
     );
 }
